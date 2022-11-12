@@ -249,7 +249,7 @@
               .attr('width', d => x(d.value)-x(0)-1)
               .attr('y', d => y(d.rank)+5);
 
-      //Add annotation for Country labels
+      //Add animation for Country labels
 
       let labels = svg.selectAll('.label')
               .data(yearSlice, d => d.name);
@@ -264,7 +264,7 @@
 
 
 
-      //Add annotation for population #
+      //Add animation for population #
       let valueLabels = svg.selectAll('.valueLabel').data(yearSlice, d => d.name);
 
       valueLabels

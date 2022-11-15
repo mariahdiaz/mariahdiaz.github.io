@@ -10,8 +10,8 @@
         padding: 7px;
         font-size: 0.8em;
         background: #fff;
-        border: 0px;
-        border-radius: 5px;
+        border:0px;
+        border-radius:5px;
 
     }
 
@@ -40,7 +40,7 @@
         .attr('class', 'tooltip')
         .style('opacity', 0)
         .style("border", "solid")
-        .style("border-width", "1px");;
+        .style("border-width", "1px");
 
 
     // Map and projection
@@ -69,6 +69,7 @@
         // Color legend
         let legend = d3.legendColor()
             .labelFormat(d3.format(".1s"))
+            .labels(d3.legendHelpers.thresholdLabels)
             .title('Population Size:')
             .cells(9)
             .scale(colorScale);
@@ -92,7 +93,6 @@
             // set the color of each country
             .attr("fill", function (d) {
                 d.total = data.get(d.id) || 0;
-                //console.log( d.id)
                 return colorScale(d.total);
             })
             .style("stroke", "transparent")
@@ -119,7 +119,7 @@
             .attr('text-anchor', 'begin')
             .attr('x', 100)
             .attr('y', 90)
-            .text('Choropleth Map of Population across the World in 2022')
+            .text('Population by Country Across the World in 2022')
             .style("font-size", "25px");
 
 

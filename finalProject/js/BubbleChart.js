@@ -97,11 +97,13 @@ d3.csv("BubbleChartData.csv").then((data) => {
         .style("opacity", "0.7")
         .attr("stroke", "black")
         .on("mouseover", function(event, d){
+        const formater =  d3.format('.3s');
+        const formater1= d3.format(".2f");
             div.transition()
                 .duration(200)
                 .style("opacity",1);
             div.html( `Country: ${d.Country} <br/> World Population Percentage: ${+d.WorldPopulationPercentage} %
-                <br/> Density: ${d.Density} <br/> Area: ${d.Area}`)
+                <br/> Density: ${formater1(d.Density)} <br/> Area: ${formater(d.Area)}`)
                 .style("left", (event.pageX+30)+"px")
                 .style("top", (event.pageY-28)+"px");
 

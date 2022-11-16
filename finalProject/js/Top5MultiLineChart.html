@@ -160,12 +160,41 @@
             ])
             .range(["rgba(245,41,41,0.9)",  "rgba(245,41,41,0.9)","rgba(54,129,225,0.84)","rgba(245,41,41,0.9)", "rgba(245,41,41,0.9)"]);
 
+        // Highlight the country that is hovered
+        const highlight = function(event,d){
+
+            selected_country = d[0];
+
+            d3.selectAll(".line")
+                .transition()
+                .duration(200)
+                .style("stroke", "lightgrey")
+
+
+            d3.selectAll("." + selected_specie)
+                .transition()
+                .duration(200)
+                .style("stroke", function (d) {
+                    return myColor(d[0]);
+                })
+        }
+        // Exit function
+        const doNotHighlight = function(event,d){
+            d3.selectAll(".line")
+                .transition()
+                .duration(200)
+                .style("stroke", function (d) {
+                    return myColor(d[0]);
+                })
+        }
+
         // Draw the line
         svg
             .selectAll(".line")
             .data(sumstat)
             .join("path")
             .attr("fill", "none")
+            .attr("class", function (d) { return "line " + d[0]} )
             .style("stroke", function (d) {
                 return myColor(d[0]);
             })
@@ -181,7 +210,9 @@
                     })(d[1]);
 
 
-            });
+            })
+            .on("mouseover", highlight)
+            .on("mouseleave", doNotHighlight );;
 
         //Add points and tooltip
 

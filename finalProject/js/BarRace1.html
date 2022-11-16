@@ -1,160 +1,160 @@
 <!DOCTYPE html>
 <head>
-  <meta charset="utf-8">
-  <script src="https://d3js.org/d3.v6.min.js"></script>
-  <style>
-    text{
-      font-size: 14px;
-      font-family: Open Sans, sans-serif;
-    }
-    text.title{
-      font-size: 30px;
-      font-weight: 500;
-    }
-    text.subTitle{
-      font-weight: 500;
-      fill: #777777;
-    }
-    text.caption{
-      font-weight: 400;
-      font-size: 14px;
-      fill: #777777;
-    }
-    text.label{
-      font-weight: 600;
-    }
+    <meta charset="utf-8">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        text{
+            font-size: 14px;
+            font-family: Open Sans, sans-serif;
+        }
+        text.title{
+            font-size: 30px;
+            font-weight: 500;
+        }
+        text.subTitle{
+            font-weight: 500;
+            fill: #777777;
+        }
+        text.caption{
+            font-weight: 400;
+            font-size: 14px;
+            fill: #777777;
+        }
+        text.label{
+            font-weight: 600;
+        }
 
-    text.valueLabel{
-      font-weight: 300;
-    }
+        text.valueLabel{
+            font-weight: 300;
+        }
 
-    text.yearText{
-      font-size: 64px;
-      font-weight: 700;
-      opacity: 0.25;
-    }
-    .tick text {
-      fill: #777777;
-    }
-    .xAxis .tick:nth-child(2) text {
-      text-anchor: start;
-    }
-    .tick line {
-      shape-rendering: CrispEdges;
-      stroke: #dddddd;
-    }
-    .tick line.origin{
-      stroke: #aaaaaa;
-    }
-    path.domain{
-      display: none;
-    }
-  </style>
+        text.yearText{
+            font-size: 64px;
+            font-weight: 700;
+            opacity: 0.25;
+        }
+        .tick text {
+            fill: #777777;
+        }
+        .xAxis .tick:nth-child(2) text {
+            text-anchor: start;
+        }
+        .tick line {
+            shape-rendering: CrispEdges;
+            stroke: #dddddd;
+        }
+        .tick line.origin{
+            stroke: #aaaaaa;
+        }
+        path.domain{
+            display: none;
+        }
+    </style>
 </head>
 <div id="BarRace1_viz"></div>
 
 <body>
 <script>
-  //Reference: https://bl.ocks.org/jrzief/70f1f8a5d066a286da3a1e699823470f
-  var svg = d3.select("body").append("svg")
-          .attr("width", 1200)
-          .attr("height", 600);
+    //Reference: https://bl.ocks.org/jrzief/70f1f8a5d066a286da3a1e699823470f
+    var svg = d3.select("body").append("svg")
+        .attr("width", 1200)
+        .attr("height", 600);
 
 
-  var tickDuration = 450;
+    var tickDuration = 450;
 
-  var top_n = 5;
-  var height = 600;
-  var width = 960;
+    var top_n = 5;
+    var height = 600;
+    var width = 960;
 
-  const margin = {
-    top: 80,
-    right: 0,
-    bottom: 5,
-    left: 0
-  };
+    const margin = {
+        top: 80,
+        right: 0,
+        bottom: 5,
+        left: 0
+    };
 
-  let barPadding = (height-(margin.bottom+margin.top))/(top_n*5);
+    let barPadding = (height-(margin.bottom+margin.top))/(top_n*5);
 
-  //Add title
-  let title = svg.append('text')
-          .attr('class', 'title')
-          .attr('y', 24)
-          .html('Top 5 Most Populous Countries from 1970-2022');
+    //Add title
+    let title = svg.append('text')
+        .attr('class', 'title')
+        .attr('y', 24)
+        .html('Top 5 Most Populous Countries from 1970-2022');
 
-  //Add population label
-  let subTitle = svg.append("text")
-          .attr("class", "subTitle")
-          .attr("y", 55)
-          .html("Population");
-
-
-
-  let year = 1970;
-
-  //Load Data
-
-  d3.csv('BarRace1.csv').then(function(data) {
-
-
-    data.forEach(d => {
-      d.value = +d.value,
-              d.lastValue = +d.lastValue,
-              d.value = d.value,
-              d.year = +d.year,
-              d.colour = d3.hsl("#050505")
-    });
+    //Add population label
+    let subTitle = svg.append("text")
+        .attr("class", "subTitle")
+        .attr("y", 55)
+        .html("Population");
 
 
 
-    let yearSlice = data.filter(d => d.year == year && !isNaN(d.value))
+    let year = 1970;
+
+    //Load Data
+
+    d3.csv('BarRace1.csv').then(function(data) {
+
+
+        data.forEach(d => {
+            d.value = +d.value,
+                d.lastValue = +d.lastValue,
+                d.value = d.value,
+                d.year = +d.year,
+                d.colour = d3.hsl("#050505")
+        });
+
+
+
+        let yearSlice = data.filter(d => d.year == year && !isNaN(d.value))
             .sort((a,b) => b.value - a.value)
             .slice(0, top_n);
 
-    yearSlice.forEach((d,i) => d.rank = i);
+        yearSlice.forEach((d,i) => d.rank = i);
 
-    console.log('yearSlice: ', yearSlice)
+        console.log('yearSlice: ', yearSlice)
 
 //Create X axis
-    let x = d3.scaleLinear()
+        let x = d3.scaleLinear()
             .domain([0, d3.max(yearSlice, d => d.value)])
             .range([margin.left, width-margin.right-65]);
-    let xAxis = d3.axisTop()
+        let xAxis = d3.axisTop()
             .scale(x)
             .ticks(width > 500 ? 5:2)
             .tickSize(-(height-margin.top-margin.bottom))
             .tickFormat(d => d3.format(',')(d));
 
-    svg.append('g')
+        svg.append('g')
             .attr('class', 'axis xAxis')
             .attr('transform', `translate(0, ${margin.top})`)
             .call(xAxis)
             .selectAll('.tick line')
             .classed('origin', d => d == 0);
 
-    //Create y
+        //Create y
 
-    let y = d3.scaleLinear()
+        let y = d3.scaleLinear()
             .domain([top_n, 0])
             .range([height-margin.bottom, margin.top]);
 
 
-    //Add color Scale
-    const myColor = d3
+        //Add color Scale
+        const myColor = d3
             .scaleOrdinal()
             .domain([
-              "China",
-              "India",
-              "United States",
-              "Indonesia",
-              "Pakistan",
+                "China",
+                "India",
+                "United States",
+                "Indonesia",
+                "Pakistan",
 
             ])
-            .range(["rgba(243,93,93,0.9)","rgba(243,93,93,0.9)","rgba(85,146,225,0.84)",
-              "rgba(243,93,93,0.9)","rgba(243,93,93,0.9)"]);
+            .range(["rgba(245,41,41,0.9)","rgba(245,41,41,0.9)","rgba(54,129,225,0.84)",
+                "rgba(245,41,41,0.9)","rgba(245,41,41,0.9)"]);
 
-    //Add bars
-    svg.selectAll('rect.bar')
+        //Add bars
+        svg.selectAll('rect.bar')
             .data(yearSlice, d => d.name)
             .enter()
             .append('rect')
@@ -165,11 +165,11 @@
             .attr('height', y(1)-y(0)-barPadding)
             //.style('fill', d => d.colour);
             .style("fill", function (d) {
-              return myColor(d.name);
+                return myColor(d.name);
             });
 
-    //Add Country labels
-    svg.selectAll('text.label')
+        //Add Country labels
+        svg.selectAll('text.label')
             .data(yearSlice, d => d.name)
             .enter()
             .append('text')
@@ -179,8 +179,8 @@
             .style('text-anchor', 'end')
             .html(d => d.name);
 
-    //Add population $ next to bars
-    svg.selectAll('text.valueLabel')
+        //Add population $ next to bars
+        svg.selectAll('text.valueLabel')
             .data(yearSlice, d => d.name)
             .enter()
             .append('text')
@@ -189,8 +189,8 @@
             .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1)
             .text(d => d3.format(',.0f')(d.lastValue));
 
-    //Add year
-    let yearText = svg.append('text')
+        //Add year
+        let yearText = svg.append('text')
             .attr('class', 'yearText')
             .attr('x', width-margin.right)
             .attr('y', height-25)
@@ -198,85 +198,85 @@
             .html(~~year)
             .call(halo, 10);
 
-    let ticker = d3.interval(e => {
+        let ticker = d3.interval(e => {
 
-      yearSlice = data.filter(d => d.year == year && !isNaN(d.value))
-              .sort((a,b) => b.value - a.value)
-              .slice(0,top_n);
+            yearSlice = data.filter(d => d.year == year && !isNaN(d.value))
+                .sort((a,b) => b.value - a.value)
+                .slice(0,top_n);
 
-      yearSlice.forEach((d,i) => d.rank = i);
+            yearSlice.forEach((d,i) => d.rank = i);
 
-      console.log('IntervalYear: ', yearSlice);
+            console.log('IntervalYear: ', yearSlice);
 
-      //Add x axis animation
-      x.domain([0, d3.max(yearSlice, d => d.value)]);
+            //Add x axis animation
+            x.domain([0, d3.max(yearSlice, d => d.value)]);
 
-      svg.select('.xAxis')
-              .transition()
-              .duration(tickDuration)
-              .ease(d3.easeLinear)
-              .call(xAxis);
+            svg.select('.xAxis')
+                .transition()
+                .duration(tickDuration)
+                .ease(d3.easeLinear)
+                .call(xAxis);
 
-      //Add bar animation
-      let bars = svg.selectAll('.bar').data(yearSlice, d => d.name);
-
-
-      bars
-              .transition()
-              .duration(tickDuration)
-              .ease(d3.easeLinear)
-              .attr('width', d => x(d.value)-x(0)-1)
-              .attr('y', d => y(d.rank)+5);
-
-      //Add animation for Country labels
-
-      let labels = svg.selectAll('.label')
-              .data(yearSlice, d => d.name);
+            //Add bar animation
+            let bars = svg.selectAll('.bar').data(yearSlice, d => d.name);
 
 
-      labels
-              .transition()
-              .duration(tickDuration)
-              .ease(d3.easeLinear)
-              .attr('x', d => x(d.value)-8)
-              .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1);
+            bars
+                .transition()
+                .duration(tickDuration)
+                .ease(d3.easeLinear)
+                .attr('width', d => x(d.value)-x(0)-1)
+                .attr('y', d => y(d.rank)+5);
 
-      //Add animation for population #
+            //Add animation for Country labels
 
-      let valueLabels = svg.selectAll('.valueLabel').data(yearSlice, d => d.name);
+            let labels = svg.selectAll('.label')
+                .data(yearSlice, d => d.name);
 
 
-      valueLabels
-              .transition()
-              .duration(tickDuration)
-              .ease(d3.easeLinear)
-              .attr('x', d => x(d.value)+5)
-              .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1)
-              .tween("text", function(d) {
-                let i = d3.interpolateRound(d.lastValue, d.value);
-                return function(t) {
-                  this.textContent = d3.format(',')(i(t));
-                };
-              });
+            labels
+                .transition()
+                .duration(tickDuration)
+                .ease(d3.easeLinear)
+                .attr('x', d => x(d.value)-8)
+                .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1);
 
-      //Increment Year
-      yearText.html(~~year);
+            //Add animation for population #
 
-      if(year == 2022) ticker.stop();
-      year = ((+year)+1);
-    },tickDuration);
+            let valueLabels = svg.selectAll('.valueLabel').data(yearSlice, d => d.name);
 
-  });
 
-  const halo = function(text, strokeWidth) {
-    text.select(function() { return this.parentNode.insertBefore(this.cloneNode(true), this); })
+            valueLabels
+                .transition()
+                .duration(tickDuration)
+                .ease(d3.easeLinear)
+                .attr('x', d => x(d.value)+5)
+                .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1)
+                .tween("text", function(d) {
+                    let i = d3.interpolateRound(d.lastValue, d.value);
+                    return function(t) {
+                        this.textContent = d3.format(',')(i(t));
+                    };
+                });
+
+            //Increment Year
+            yearText.html(~~year);
+
+            if(year == 2022) ticker.stop();
+            year = ((+year)+1);
+        },tickDuration);
+
+    });
+
+    const halo = function(text, strokeWidth) {
+        text.select(function() { return this.parentNode.insertBefore(this.cloneNode(true), this); })
             .style('fill', '#ffffff')
             .style( 'stroke','#ffffff')
             .style('stroke-width', strokeWidth)
             .style('stroke-linejoin', 'round')
             .style('opacity', 1);
 
-  }
+    }
 
 
 </script>

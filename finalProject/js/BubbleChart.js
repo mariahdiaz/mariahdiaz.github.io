@@ -1,5 +1,3 @@
-
-
 // set the dimensions and margins of the graph
 var margin = { top: 120, right: 250, bottom: 75, left: 130 },
     width = 1100 - margin.left - margin.right,
@@ -29,7 +27,7 @@ svg.append("text")
     .attr("x", width / 2)
     .attr("y",-60)
     .attr("text-anchor", "middle")
-    .text("World Population Percentage Bubble Chart")
+    .text("Country by World Population Percentage ")
     .style("font-size", "30px") ;
 
 // read the data
@@ -82,7 +80,8 @@ d3.csv("BubbleChartData.csv").then((data) => {
     // add a scale for bubble color
     const myColor = d3.scaleOrdinal()
         .domain(["Asia","Europe","Africa","Oceania","North America","South America"])
-        .range(d3.schemeSet1);
+        .range(["rgba(245,41,41,0.9)", "rgba(54,129,225,0.84)","rgba(78,178,53,0.85)",
+            "rgba(176,78,197,0.78)","rgba(255,116,3,0.8)", "rgba(243,225,21,0.82)"]);
 
     // add Bubbles
     svg.append("g")
@@ -94,16 +93,15 @@ d3.csv("BubbleChartData.csv").then((data) => {
         .attr("cy", (d) => y(d.Density))
         .attr("r", (d) => z(+d.WorldPopulationPercentage))
         .style("fill", (d) => myColor(d.Continent))
-        .style("opacity", "0.7")
+        .style("opacity", "0.85")
         .attr("stroke", "black")
         .on("mouseover", function(event, d){
-        const formater =  d3.format('.3s');
-        const formater1= d3.format(".2f");
+            const formater =  d3.format('.2s');
             div.transition()
                 .duration(200)
                 .style("opacity",1);
             div.html( `Country: ${d.Country} <br/> World Population Percentage: ${+d.WorldPopulationPercentage} %
-                <br/> Density: ${formater1(d.Density)} <br/> Area: ${formater(d.Area)}`)
+                <br/> Density: ${formater(d.Density)} <br/> Area: ${formater(d.Area)}`)
                 .style("left", (event.pageX+30)+"px")
                 .style("top", (event.pageY-28)+"px");
 
@@ -129,7 +127,7 @@ d3.csv("BubbleChartData.csv").then((data) => {
         .attr("cy", (d, i) => 10 + i * (size + 7))
         .attr("r", 5)
         .style("fill", (d) => myColor(d))
-        .style("opacity", "0.7")
+        .style("opacity", "0.85")
         .attr("stroke", "black");
 
     // add labels beside colored dots
@@ -154,4 +152,3 @@ d3.csv("BubbleChartData.csv").then((data) => {
         .attr("text-anchor", "middle");
 
 });
-

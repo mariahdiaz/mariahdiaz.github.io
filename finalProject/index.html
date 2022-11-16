@@ -37,8 +37,8 @@
 					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="first">
 						<div class="content">
 							<h2>Motivation</h2>
-							<p>This project is intended to help one get a better understanding of the world around them and get perspective on how populated our Earth is. 
-								You will be able to see how population size varies around the world, see the change in population over the years and get a better understanding of how densely populated countries are in relation to their area.</p>
+							<p>This project is intended to increase understanding of population growth throughout the world. 
+							Specifically, how population size varies throughout the world, trends in population over time, and a country’s population density in relation to its geographic size.</p>
 
 							<ul> 
 			<li><a href="https://drive.google.com/file/d/1npkRDfgHl-1GAr6SqAvo6RwLNNnDYno2/view?usp=share_link " title="Alpha Release PDF"> Alpha Release PDF</a></li>
@@ -57,8 +57,8 @@
 							<h2>Choropleth Map</h2>
 							<p>The first visualization I have implemented is a Choropleth Map to visualize population distribution across the world. 
 								I have chosen this visualization because it gives a clear picture of the world as a whole and helps a viewer visually connect a country to its precise location and current population. 
-								I have implemented a hover tooltip that gives specific information for each country to make the overall experience even more clear. 
-								A sequential color scale has been chosen because in terms of viewing a quantitative value such as population that only has positive values, it makes the most sense. </p>
+								I have implemented a hover tooltip that gives specific information for each country to make the overall experience even clearer. 
+								A sequential color scale has been chosen because when viewing a quantitative value, such as population that only has positive values, it makes the most sense.  </p>
 							<iframe onload="resizeIframe(this)" frameborder="0" width="1200" height ="900" src="js/ChoroplethMap.html">
 								
 							</iframe>
@@ -75,7 +75,11 @@
 						<div class="content">
 
 							<h2>MultiSeries Line Chart</h2>
-							<p>Blah Blah Blah</p>
+							<p>I picked a line chart for my next visualization because it is an effective way to depict change over time. 
+								With the first visualizations we focus on the top 5 most populous countries colored by continent. 
+								The second visualization shows the 2 most populous countries from each continent with color repetition to categorize the lines by continent to help identify trends in population growth both over time and by continent. 
+								Hover interaction has also been added to present the particular population at each highlighted year milestone. 
+								Currently, hovering to gray out selected lines is a work in progress. </p>
 							<iframe onload="resizeIframe(this)" frameborder="0"  width="1500" height ="800" src="js/Top5MultiLineChart.html">
 								
 							</iframe>
@@ -92,7 +96,12 @@
 						<div class="content">
 
 							<h2>Bubble Chart</h2>
-							<p>Blah Blah Blah</p>
+							<p>With this visualization I wanted to depict how densely populated countries were in relation to their geographic size. 
+								A bubble chart was chosen because it allows visualization of three different values simultaneously.
+								The chart shows a country’s geographic size in relation to population density by location in relation to the x and y axis. 
+								The bubble size then worlds to show what percentage of the overall world's population percentage it makes up. 
+								This provides  a better understanding of each country's impact relative to the space they take up. The same consistent color scale is used to categorize by continent labeled by the legend on the right.
+								Hover interaction has been added to specify information for each bubble making the visual easier to interpret and on the x and y axis log scales have been implemented to fit all the bubbles in a more central area since the data range is so large. </p>
 							<iframe onload="resizeIframe(this)" frameborder="0"  width="1500" height ="800" src="js/PopPercentBubbleChart.html">
 								
 							</iframe>
@@ -105,7 +114,10 @@
 					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
 						<div class="content">
 							<h2>Bar Race</h2>
-							<p>Blah Blah Blah</p>
+							<p>My last visualization is a bar race. 
+								This was chosen to best visualize how the countries rank in terms of population size over a 50+ year period. 
+								Once again color is by continent following the color scheme consistent with the overall website in order to observe trends among countries by continent. 
+								Two races have been implemented with the same highlighted countries to show the leaders of each continent and how they rank in comparison to their counterparts. </p>
 							<iframe onload="resizeIframe(this)" frameborder="0"  width="1300" height ="800" src="js/BarRace1.html">
 								
 							</iframe>
@@ -120,8 +132,8 @@
 					<section class="wrapper style1 align-center">
 						<div class="inner">
 							<h2>Highlighted -Countries</h2>
-							<p>In this exploration of how population is distributed across the world we focus on specific countries to minimize clutter within certain visualizations.
-							The highlighted countries include the 5 most populous countries in the world and then excluding those countries the remaining 2 most populous countries from each continent. 
+							<p>In this exploration of how population is distributed across the world specific countries are focused on to minimize clutter within certain visualizations. 
+								The highlighted countries include the 5 most populous countries in the world, afterwhich, excluding those 5 countries, the remaining 2 most populous countries from each continent are represented.
 							 </p>
 						</div>
 

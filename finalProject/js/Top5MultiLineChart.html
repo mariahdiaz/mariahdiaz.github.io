@@ -1,39 +1,38 @@
-
 <!DOCTYPE html>
 <meta charset="utf-8">
 <title>Line Chart</title>
 <style>
 
- 
 
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
 
-  .line {
-    fill: none;
-    stroke: steelblue;
-    stroke-width: 1.5px;
-  }
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
 
-  .dot {
-    fill: white;
-    stroke: steelblue;
-    stroke-width: 1.5px;
-  }
+    .line {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 1.5px;
+    }
 
-  div.tooltip {
-    position: absolute;
-    padding: 7px;
-    font-size: 1em;
-    background: #fff;
-    border: 0px;
-    border-radius: 5px;
+    .dot {
+        fill: white;
+        stroke: steelblue;
+        stroke-width: 1.5px;
+    }
 
-  }
+    div.tooltip {
+        position: absolute;
+        padding: 7px;
+        font-size: 1em;
+        background: #fff;
+        border: 0px;
+        border-radius: 5px;
+
+    }
 
 </style>
 
@@ -46,73 +45,73 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
 
 <script>
-  //reference: https://bl.ocks.org/d3noob/97e51c5be17291f79a27705cef827da2
-  // set the dimensions and margins of the graph
-  const margin = { top: 100, right: 130, bottom: 75, left: 130 },
-          width = 1000 - margin.left - margin.right,
-          height = 600 - margin.top - margin.bottom;
+    //reference: https://bl.ocks.org/d3noob/97e51c5be17291f79a27705cef827da2
+    // set the dimensions and margins of the graph
+    const margin = { top: 100, right: 130, bottom: 75, left: 130 },
+        width = 1000 - margin.left - margin.right,
+        height = 600 - margin.top - margin.bottom;
 
-  // append the svg object to the body of the page
-  const svg = d3
-          .select("#Top5LineChart")
-          .append("svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-          .attr("transform", `translate(${margin.left},${margin.top})`);
+    // append the svg object to the body of the page
+    const svg = d3
+        .select("#Top5LineChart")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
 
-  var div = d3
-          .select('body')
-          .append('div')
-          .attr('class', 'tooltip')
-          .style('opacity', 0)
-          .style("border", "solid")
-          .style("border-width", "1px");
+    var div = d3
+        .select('body')
+        .append('div')
+        .attr('class', 'tooltip')
+        .style('opacity', 0)
+        .style("border", "solid")
+        .style("border-width", "1px");
 
-  svg
-          .append("text")
-          .attr("x", width / 2)
-          .attr("y", -50)
-          .attr("text-anchor", "middle")
-          .text("Five Most Populous Countries over the Years")
-          .style("font-size", "25px");
+    svg
+        .append("text")
+        .attr("x", width / 2)
+        .attr("y", -50)
+        .attr("text-anchor", "middle")
+        .text("Five Most Populous Countries over the Years")
+        .style("font-size", "25px");
 
-  //Read the data
-  d3.csv("Top5Data.csv", function (d) {
-    return {
-      year : d3.timeParse("%Y")(d.year),
-      country: d.country,
-      population: +d.population,
-      continent: d.continent,
-    };
-  }).then(function (data) {
-    // group the data: I want to draw one line per group
-    const sumstat = d3.group(data, (d) => d.country); // nest function allows to group the calculation per level of a factor
+    //Read the data
+    d3.csv("Top5Data.csv", function (d) {
+        return {
+            year : d3.timeParse("%Y")(d.year),
+            country: d.country,
+            population: +d.population,
+            continent: d.continent,
+        };
+    }).then(function (data) {
+        // group the data: I want to draw one line per group
+        const sumstat = d3.group(data, (d) => d.country); // nest function allows to group the calculation per level of a factor
 
-    // Add X axis
+        // Add X axis
 
-    const  x = d3.scaleTime()
+        const  x = d3.scaleTime()
             .domain([
-              d3.min(data, function(d) { return d.year; }),
-              d3.max(data, function(d) { return d.year; })
+                d3.min(data, function(d) { return d.year; }),
+                d3.max(data, function(d) { return d.year; })
             ])
             .range([0,width]);
 
 
-    var xAxis = d3.axisBottom()
+        var xAxis = d3.axisBottom()
             .scale(x)
             .ticks(5)
 
 
-    svg.append("g")
+        svg.append("g")
             .attr("transform", `translate(0, ${height})`)
             .call(xAxis);
 
 
 
 
-    // add x axis label
-    svg
+        // add x axis label
+        svg
             .append("text")
             .attr("class", "x label")
             .attr("text-anchor", "middle")
@@ -121,20 +120,25 @@
             .style("font-size", "20px")
             .text("Years");
 
-    // Add Y axis
-    const y = d3
+        // Add Y axis
+        const y = d3
             .scaleLinear()
             .domain([
-              0,
-              d3.max(data, function (d) {
-                return +d.population;
-              }),
+                0,
+                d3.max(data, function (d) {
+                    return +d.population;
+                }),
             ])
             .range([height, 0])
             .nice();
-    svg.append("g").call(d3.axisLeft(y));
+
+
+
+        svg.append("g")
+            .call(d3.axisLeft(y).tickFormat(d3.format(".2s")))
+
 //Y axis label
-    svg
+        svg
             .append("text")
             .attr("text-anchor", "middle")
             .attr("x", -height / 2)
@@ -144,81 +148,82 @@
             .attr("transform", "rotate(-90)");
 
 
-    const myColor = d3
+        const myColor = d3
             .scaleOrdinal()
             .domain([
-              "China",
-              "India",
-              "United States",
-              "Indonesia",
-              "Pakistan",
+                "China",
+                "India",
+                "United States",
+                "Indonesia",
+                "Pakistan",
 
             ])
             .range(["rgba(245,41,41,0.9)",  "rgba(245,41,41,0.9)","rgba(54,129,225,0.84)","rgba(245,41,41,0.9)", "rgba(245,41,41,0.9)"]);
 
-    // Draw the line
-    svg
+        // Draw the line
+        svg
             .selectAll(".line")
             .data(sumstat)
             .join("path")
             .attr("fill", "none")
             .style("stroke", function (d) {
-              return myColor(d[0]);
+                return myColor(d[0]);
             })
             .attr("stroke-width", 1)
             .attr("d", function (d) {
-              return d3
-                      .line()
-                      .x(function (d) {
+                return d3
+                    .line()
+                    .x(function (d) {
                         return x(d.year);
-                      })
-                      .y(function (d) {
+                    })
+                    .y(function (d) {
                         return y(+d.population);
-                      })(d[1]);
+                    })(d[1]);
 
 
             });
-   
-   //Add points and tooltip
 
-    svg.selectAll("dot")
+        //Add points and tooltip
+
+        svg.selectAll("dot")
             .data(data)
             .enter().append("circle")
             .attr("r", 4)
             .attr("cx", function(d) { return x(d.year); })
             .attr("cy", function(d) { return y(+d.population); })
             .style("fill", function (d) {
-              return myColor(d.country);
+                return myColor(d.country);
             })
             .on("mouseover", function(event, d){
-              div.transition()
-                      .duration(200)
-                      .style("opacity",1);
-              div.html( `Country: ${d.country} <br/> Continent: ${d.continent}
-                <br/> Population: ${d.population}`)
-                      .style("left", (event.pageX+30)+"px")
-                      .style("top", (event.pageY-28)+"px");
+                const formater =  d3.format('.3s');
+                div.transition()
+                    .duration(200)
+                    .style("opacity",1);
+                div.html( `Country: ${d.country} <br/> Continent: ${d.continent}
+                <br/> Population: ${formater(d.population)}`)
+                    .style("left", (event.pageX+30)+"px")
+                    .style("top", (event.pageY-28)+"px");
 
             })
             .on("mouseout", function(d){
-              div.transition()
-                      .duration(500)
-                      .style("opacity", 0);
+                div.transition()
+                    .duration(500)
+                    .style("opacity", 0);
             });
 
-    // Color legend
-    let legend = d3.legendColor()
+        // Color legend
+        let legend = d3.legendColor()
             .labelFormat(d3.format('.2s'))
             .title('Countries:')
             .cells(5)
             .scale(myColor);
 
-    svg.append('g')
+        svg.append('g')
             .attr('class','legend')
             .attr("transform", "translate(760,0)")
             .call(legend);
 
-  });
+    });
 
 
 </script>

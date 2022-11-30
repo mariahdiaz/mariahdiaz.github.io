@@ -27,7 +27,7 @@ svg.append("text")
     .attr("x", width / 2)
     .attr("y",-60)
     .attr("text-anchor", "middle")
-    .text("Country by World Population Percentage ")
+    .text("Country by World Population Percentage in 2022 ")
     .style("font-size", "30px") ;
 
 // read the data
@@ -42,7 +42,8 @@ d3.csv("BubbleChartData.csv").then((data) => {
     //visualize x axis
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+        .call(d3.axisBottom(x))
+        .style("font-size", "12px");
 
     // add x axis label
     svg.append("text")
@@ -61,7 +62,8 @@ d3.csv("BubbleChartData.csv").then((data) => {
 
     //visualize y axis
     svg.append("g")
-        .call(d3.axisLeft(y));
+        .call(d3.axisLeft(y))
+        .style("font-size", "12px");
 
     // add y axis label:
     svg.append("text")

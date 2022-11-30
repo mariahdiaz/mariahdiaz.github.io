@@ -10,7 +10,7 @@ year,country,continent,population
 1970,Mexico,North America,50289306
 1970,Canada,North America,21434577
 1970,Australia,Oceania,12595034
-1970,Papua New Guinea,Oceania,2489059
+1970,PapuaNewGuinea,Oceania,2489059
 1980,Bangladesh,Asia,83929765
 1980,Japan,Asia,117624196
 1980,Nigeria,Africa,72951439
@@ -22,7 +22,7 @@ year,country,continent,population
 1980,Mexico,North America,67705186
 1980,Canada,North America,24511510
 1980,Australia,Oceania,14706322
-1980,Papua New Guinea,Oceania,3104788
+1980,PapuaNewGuinea,Oceania,3104788
 1990,Bangladesh,Asia,107147651
 1990,Japan,Asia,123686321
 1990,Nigeria,Africa,95214257
@@ -34,7 +34,7 @@ year,country,continent,population
 1990,Mexico,North America,81720428
 1990,Canada,North America,27657204
 1990,Australia,Oceania,17048003
-1990,Papua New Guinea,Oceania,3864972
+1990,PapuaNewGuinea,Oceania,3864972
 2000,Bangladesh,Asia,129193327
 2000,Japan,Asia,126803861
 2000,Nigeria,Africa,122851984
@@ -46,7 +46,7 @@ year,country,continent,population
 2000,Mexico,North America,97873442
 2000,Canada,North America,30683313
 2000,Australia,Oceania,19017963
-2000,Papua New Guinea,Oceania,5508297
+2000,PapuaNewGuinea,Oceania,5508297
 2010,Bangladesh,Asia,148391139
 2010,Japan,Asia,128105431
 2010,Nigeria,Africa,160952853
@@ -58,7 +58,7 @@ year,country,continent,population
 2010,Mexico,North America,112532401
 2010,Canada,North America,33963412
 2010,Australia,Oceania,22019168
-2010,Papua New Guinea,Oceania,7583269
+2010,PapuaNewGuinea,Oceania,7583269
 2015,Bangladesh,Asia,157830000
 2015,Japan,Asia,127250933
 2015,Nigeria,Africa,183995785
@@ -70,7 +70,7 @@ year,country,continent,population
 2015,Mexico,North America,120149897
 2015,Canada,North America,35732126
 2015,Australia,Oceania,23820236
-2015,Papua New Guinea,Oceania,8682174
+2015,PapuaNewGuinea,Oceania,8682174
 2020,Bangladesh,Asia,167420951
 2020,Japan,Asia,125244761
 2020,Nigeria,Africa,208327405
@@ -82,7 +82,7 @@ year,country,continent,population
 2020,Mexico,North America,125998302
 2020,Canada,North America,37888705
 2020,Australia,Oceania,25670051
-2020,Papua New Guinea,Oceania,9749640
+2020,PapuaNewGuinea,Oceania,9749640
 2022,Bangladesh,Asia,171186372
 2022,Japan,Asia,123951692
 2022,Nigeria,Africa,218541212
@@ -94,4 +94,4 @@ year,country,continent,population
 2022,Mexico,North America,127504125
 2022,Canada,North America,38454327
 2022,Australia,Oceania,26177413
-2022,Papua New Guinea,Oceania,10142619
+2022,PapuaNewGuinea,Oceania,10142619

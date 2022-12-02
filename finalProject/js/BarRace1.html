@@ -179,6 +179,15 @@
             .style('text-anchor', 'end')
             .html(d => d.name);
 
+        fcopy = d3.format;
+        function myFormat(){
+            function_ret = fcopy.apply(d3, arguments)
+            return (function(args){return function (){
+                return args.apply(d3, arguments).replace(/G/, "B");
+            }})(function_ret)
+        }
+        d3.format = myFormat;
+
         //Add population # next to bars
         svg.selectAll('text.valueLabel')
             .data(yearSlice, d => d.name)
@@ -187,7 +196,8 @@
             .attr('class', 'valueLabel')
             .attr('x', d => x(d.value)+5)
             .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1)
-            .text(d => d3.format('.4s')(d.lastValue));
+            .text(d => d3.format('.4s')(d.lastValue))
+           // .labels(({ i, generatedLabels }) => generatedLabels.at(i).replace('G', 'B'));
 
         //Add year
         let yearText = svg.append('text')

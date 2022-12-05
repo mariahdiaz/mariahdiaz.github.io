@@ -78,7 +78,15 @@
             .attr('class','legend')
             .attr("transform", "translate(700,150)")
             .call(legend);
-
+        
+   fcopy = d3.format;
+        function myFormat(){
+            function_ret = fcopy.apply(d3, arguments)
+            return (function(args){return function (){
+                return args.apply(d3, arguments).replace(/G/, "B");
+            }})(function_ret)
+        }
+        d3.format = myFormat;
 
         // Draw the map
         svg.append("g")

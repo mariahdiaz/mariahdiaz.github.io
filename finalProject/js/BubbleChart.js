@@ -83,7 +83,7 @@ d3.csv("BubbleChartData.csv").then((data) => {
     const myColor = d3.scaleOrdinal()
         .domain(["Asia","Europe","Africa","Oceania","North America","South America"])
         .range(["rgba(245,41,41,0.9)", "rgba(54,129,225,0.84)","rgba(78,178,53,0.85)",
-            "rgba(176,78,197,0.78)","rgba(255,116,3,0.8)", "rgba(243,225,21,0.82)"]);
+            "rgba(176,78,197,0.78)","rgba(255,116,3,0.8)", "rgba(250,220,5,0.95)"]);
 
     // add Bubbles
     svg.append("g")

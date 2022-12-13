@@ -31,7 +31,10 @@
 * Choropleth Map
   * Hover over country to view specific population number
 * Multi-Series Line Chart
+  * Hover over dots to view information at each year interval
+  * Hover over lines to grey out remaining lines and highlight chosen one 
 * Bubble Chart
+  * Hover over bubbles to get insight on density, area, and population percentage for each country
 * Bar Chart Race
- * 
+  * To restart animation press reload button above race
 

@@ -25,4 +25,5 @@
 ## Libraries
  * <a href="https://d3js.org" target="_blank">D3v7</a>
  * <a href="https://github.com/topojson/topojson" target="_blank">TopoJSON v3</a>
+ * <a href="http://using-d3js.com/04_08_legends.html" target="_blank">D3 Legend</a>
 

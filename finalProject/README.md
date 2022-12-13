@@ -23,7 +23,8 @@
  * Navigate to Terminal
  * Change the current working directory to the location where you want the cloned directory
  * Add and Commit changes: git add <NEW_FILE_NAME> and git commit -m "<COMMIT_MESSAGE>"
- * Push the code: get push <MY_BRANCH_NAME>
+ * Push the code: 
+     git push <MY_BRANCH_NAME>
 
 ## Libraries
  * <a href="https://d3js.org" target="_blank">D3v7</a>

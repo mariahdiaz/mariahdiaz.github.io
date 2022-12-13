@@ -19,6 +19,9 @@
  ## Rebuild Instructions
  
  * Clone the repository:
- * #.
  * Add and Commit changes: git add <NEW_FILE_NAME> and git commit -m "<COMMIT_MESSAGE>"
  * Push the code: get push <MY_BRANCH_NAME>
+
+## Libraries
+ <a href="https://d3js.org" target="_blank">D3v7</a>
+

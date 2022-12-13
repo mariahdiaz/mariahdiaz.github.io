@@ -8,7 +8,7 @@
  
  ## Project Objectives
  
- Markup:  *One
+ *One
  *Two
  *Three
  *Four

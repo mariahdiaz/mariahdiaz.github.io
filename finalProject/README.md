@@ -19,10 +19,10 @@
  ## Rebuild Instructions
  
  * Clone the repository: 
-   * HTTPS: https://github.com/mariahdiaz/mariahdiaz.github.io.git
+   * HTTPS: `https://github.com/mariahdiaz/mariahdiaz.github.io.git`
  * Navigate to Terminal
  * Change the current working directory to the location where you want the cloned directory
- * Add and Commit changes: git add <NEW_FILE_NAME> and git commit -m "<COMMIT_MESSAGE>"
+ * Add and Commit changes: `git add <NEW_FILE_NAME>` and `git commit -m "<COMMIT_MESSAGE>"`
  * Push the code:`git push <MY_BRANCH_NAME>`
 
 ## Libraries

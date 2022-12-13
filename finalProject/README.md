@@ -1,4 +1,4 @@
-# Our Ever-Growing World
+## Our Ever-Growing World
 # Overview
  This project is intended to increase understanding of population growth throughout the world. 
  It is easy to get consumed in daily life, thus it is important to reflect on how populated the world actually is. 

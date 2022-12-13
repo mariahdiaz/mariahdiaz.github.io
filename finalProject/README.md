@@ -27,3 +27,11 @@
  * <a href="https://github.com/topojson/topojson" target="_blank">TopoJSON v3</a>
  * <a href="http://using-d3js.com/04_08_legends.html" target="_blank">D3 Legend</a>
 
+## Interaction
+* Choropleth Map
+* - 
+* Multi-Series Line Chart
+* Bubble Chart
+* Bar Chart Race
+* * 
+

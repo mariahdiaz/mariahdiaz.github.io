@@ -29,9 +29,9 @@
 
 ## Interaction
 * Choropleth Map
-* - 
+ * Hover over country to view specific population number
 * Multi-Series Line Chart
 * Bubble Chart
 * Bar Chart Race
-* * 
+ * 
 

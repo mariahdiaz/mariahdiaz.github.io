@@ -23,5 +23,5 @@
  * Push the code: get push <MY_BRANCH_NAME>
 
 ## Libraries
- <a href="https://d3js.org" target="_blank">D3v7</a>
+ * <a href="https://d3js.org" target="_blank">D3v7</a>
 

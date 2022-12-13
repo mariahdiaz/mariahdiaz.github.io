@@ -7,11 +7,9 @@
  Specifically, how population size varies/ranks, trends in population over time, and population density in relation to its geographic size.
  
  ## Project Objectives
- 
- *One
- *Two
- *Three
- *Four
+ 1. One
+ 2. Two
+ 3. Three
  
  ## Website Link
  

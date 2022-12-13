@@ -15,3 +15,9 @@
  ## Website Link
  
  <a href="https://mariahdiaz.github.io/finalProject/" target="_blank">Our Ever-Growing World Link</a>
+ 
+ ## Rebuild Instructions
+ 
+ * Clone the repository:
+ * Add and Commit changes: git add <NEW_FILE_NAME> and git commit -m "<COMMIT_MESSAGE>"
+ * Push the code: get push <MY_BRANCH_NAME>

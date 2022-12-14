@@ -114,6 +114,61 @@ d3.csv("BubbleChartData.csv").then((data) => {
                 .style("opacity", 0);
         });
 
+    const valuesToShow = [0.01, 0.5,2, 5, 18]
+    const xCircle = 830
+    const xLabel = 920
+    const yCircle = 330
+
+   // bubble size legend
+    svg
+        .selectAll("legend")
+        .data(valuesToShow)
+        .join("circle")
+        .attr("cx", xCircle)
+        .attr("cy", d => yCircle - z(d))
+        .attr("r", d => z(d))
+        .style("fill", "none")
+        .attr("stroke", "black")
+
+    //Connecting line for size legend
+    svg
+        .selectAll("legend")
+        .data(valuesToShow)
+        .join("line")
+        .attr('x1', d => xCircle + z(d))
+        .attr('x2', xLabel)
+        .attr('y1', d => yCircle - z(d))
+        .attr('y2', d => yCircle - z(d))
+        .attr('stroke', 'black')
+        .style('stroke-dasharray', ('2,2'))
+
+    //Percent Labels for size legend
+    svg
+        .selectAll("legend")
+        .data(valuesToShow)
+        .join("text")
+        .attr('x', xLabel)
+        .attr('y', d => yCircle - z(d))
+        .text( d => d + "%")
+        .style("font-size", 11)
+        .attr('alignment-baseline', 'middle')
+
+    // Size legend title
+    svg.append("text")
+        .attr("x", 840)
+        .attr("y",360)
+        .text("World Population Percentage")
+        .style("font-size", 17)
+        .attr("text-anchor", "middle");
+    svg.append("text")
+        .attr("x", 840)
+        .attr("y",385)
+        .text("Bubble Size Legend")
+        .style("font-size", 17)
+        .attr("text-anchor", "middle");
+
+
+
 
 
 //Bubble color legend
